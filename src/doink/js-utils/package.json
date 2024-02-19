@@ -1,0 +1,8 @@
+{
+  "name": "utils",
+  "type": "module",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.0.2",
+    "@bytecodealliance/preview2-shim": "^0.15.1"
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "rust-analyzer.check.overrideCommand": [
+        "cargo",
+        "component",
+        "check",
+        "--workspace",
+        "--all-targets",
+        "--message-format=json"
+    ],
+    "rust-analyzer.workspace.symbol.search.scope": "workspace_and_dependencies",
+    "zig.path": "/nix/store/jdcras9fpriayy669zl3c4wbqr5gvspz-zig-0.11.0/bin/zig",
+    // "zig.zls.path": "/nix/store/im0cdijkhkrn3rdvab0964l6ar481fp4-zls-0.11.0/bin/zls"
+}
