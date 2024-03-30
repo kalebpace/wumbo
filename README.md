@@ -5,16 +5,20 @@
 - cd into the root of this project and build the rust or zig based projects with
 ```bash
 nix build .#component-rs
+nix build .#component-tinygo
 nix build .#doink
 ```
 
 - To get a shell with all the toolchains needed for a given project run:
 ```bash
 nix develop .#component-rs
+nix develop .#component-tinygo
 nix develop .#doink
 ```
 
 - To run the default command for a project
 ```bash
+nix run .#component-rs
+nix run .#component-tinygo
 nix run .#doink
 ```

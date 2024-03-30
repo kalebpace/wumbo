@@ -31,20 +31,9 @@
           inherit doink;
         };
 
-        devShells = {
-          default = with pkgs; (mkShell.override { stdenv = stdenvNoCC; } {
-            nativeBuildInputs = [
-              vsCodeWithExtensions
-              neovim
-            ];
-          });
-          component-rs = (import ./src/component-rs/shell.nix { inherit pkgs; });
-          component-tinygo = (import ./src/component-tinygo/shell.nix { inherit pkgs; });
-          doink = (import ./src/doink/shell.nix { inherit pkgs; });
-        };
-        
         apps = {
-          default = {
+          default = component-rs;
+          component-rs = {
             type = "app";
             program = toString (pkgs.writers.writeBash "default" ''
               ${pkgs.wasmtime}/bin/wasmtime run --wasm component-model ${component-rs}/component_rs.wasm
@@ -64,6 +53,18 @@
               ${pkgs.nodejs}/bin/node ${packages.doink}/index.mjs
             '');
           };
+        };
+
+        devShells = {
+          default = with pkgs; (mkShell.override { stdenv = stdenvNoCC; } {
+            nativeBuildInputs = [
+              vsCodeWithExtensions
+              neovim
+            ];
+          });
+          component-rs = (import ./src/component-rs/shell.nix { inherit pkgs; });
+          component-tinygo = (import ./src/component-tinygo/shell.nix { inherit pkgs; });
+          doink = (import ./src/doink/shell.nix { inherit pkgs; });
         };
       }
     );
