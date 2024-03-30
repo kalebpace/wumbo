@@ -20,14 +20,14 @@
         };
         vsCodeWithExtensions = import ./utils/vscodium.nix { inherit pkgs; };
         component-rs = import ./src/component-rs { inherit pkgs; };
+        component-tinygo = import ./src/component-tinygo { inherit pkgs; };
         doink = import ./src/doink { inherit pkgs; };
-        
-        nodeDependencies = (pkgs.callPackage ./src/doink/js-utils/default.nix {}).nodeDependencies;
       in
       rec {
         packages = {
           default = component-rs;
           inherit component-rs;
+          inherit component-tinygo;
           inherit doink;
         };
 
@@ -39,6 +39,7 @@
             ];
           });
           component-rs = (import ./src/component-rs/shell.nix { inherit pkgs; });
+          component-tinygo = (import ./src/component-tinygo/shell.nix { inherit pkgs; });
           doink = (import ./src/doink/shell.nix { inherit pkgs; });
         };
         
@@ -47,6 +48,13 @@
             type = "app";
             program = toString (pkgs.writers.writeBash "default" ''
               ${pkgs.wasmtime}/bin/wasmtime run --wasm component-model ${component-rs}/component_rs.wasm
+            '');
+          };
+          
+          component-tinygo = {
+            type = "app";
+            program = toString (pkgs.writers.writeBash "component-tinygo" ''
+              ${pkgs.wasmtime}/bin/wasmtime run --wasm component-model ${component-tinygo}/main.component.wasm
             '');
           };
           

@@ -14,18 +14,40 @@ let
   nativeBuildInputs = [
     zig
     js-utils.nodeDependencies
-    (wasmtime.overrideAttrs {
+    (wasmtime.overrideAttrs (oldAttrs: rec {
       version = "18.0.1";
-    })
-    (wasm-tools.overrideAttrs {
+      src = fetchFromGitHub {
+          owner = "bytecodealliance";
+          repo = "wasmtime";
+          rev = "v${version}";
+          hash = "sha256-wCaDwaD/Xvm++PCrDmXo2Nqn9z07et8AhSI1e1527vc=";
+          fetchSubmodules = true;
+        };
+      cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
+        inherit src;
+        outputHash = "sha256-yaoM1+DYXBP3RNksmyFfByzkx1R3wN/aHjKiMQAeb8I=";
+      });
+    }))
+    (wasm-tools.overrideAttrs (oldAttrs: rec {
       version = "1.200.0";
-    })
+      src = fetchFromGitHub {
+          owner = "bytecodealliance";
+          repo = "wasm-tools";
+          rev = "v${version}";
+          hash = "sha256-GuN70HiCmqBRwcosXqzT8sl5SRCTttOPIRl6pxaQiec=";
+          fetchSubmodules = true;
+        };
+      cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
+        inherit src;
+        outputHash = "sha256-tzgzticlY4OKVgsfdp5dxMHL5xz3Fapn0/n1zsyomWQ=";
+      });
+    }))
   ];
 in
 stdenvNoCC.mkDerivation {
   name = "doink";
   src = ./.;
-  phases = [ "unpackPhase" "buildPhase" "installPhase" ];
+  phases = [ "unpackPhase" "buildPhase" "installPhase" "checkPhase" ];
   inherit nativeBuildInputs;
   buildPhase = ''
     export XDG_CACHE_HOME=$(mktemp -d)
@@ -47,6 +69,12 @@ stdenvNoCC.mkDerivation {
     
     rm -rf $XDG_CACHE_HOME
   '';
+  
+  doCheck = true;
+  checkPhase = ''
+    wasm-tools validate ./final.wasm --features component-model
+  '';
+  
 
   installPhase = ''
     # We copy the package.json and link deps in the install directory to make it
