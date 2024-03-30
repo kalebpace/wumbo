@@ -75,8 +75,5 @@
       # https://github.com/NixOS/nix/issues/9625
       "/private/etc/ssl/openssl.cnf"
     ];
-    # allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    #   "Xcode.app"
-    # ];
   };
 }

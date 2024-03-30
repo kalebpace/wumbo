@@ -1,7 +1,7 @@
 package main
 
 import (
-	gen "main/host"
+	gen "main/gen"
 )
 
 func init() {
@@ -16,5 +16,5 @@ func (e HostImpl) Run() {
   gen.HostPrint("Hello, world!")
 }
 
-//go:generate wit-bindgen tiny-go ../wit --out-dir=host
+//go:generate wit-bindgen tiny-go ../wit --out-dir=gen
 func main() {}
