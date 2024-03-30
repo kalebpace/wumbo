@@ -1,0 +1,16 @@
+package example:host;
+
+world host {
+  import print: func(msg: string);
+  export run: func();
+}
+
+// old wit from wit-bindgen docs example
+// wit/host.wit
+//package example:host;
+
+//world host {
+//  import host: func(msg: string);
+
+//  export run: func();
+//}

@@ -9,12 +9,14 @@ vscode-with-extensions.override {
     matklad.rust-analyzer
     tamasfe.even-better-toml
     serayuzgur.crates
+    viktorqvarfordt.vscode-pitch-black-theme
+    golang.go
   ] ++ vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "gitlens";
       publisher = "eamodio";
       version = "latest";
-      sha256 = "sha256-6UJRjyMe9XqVduQ9GaKanEN28dxj05v9Oo/xyM/7LN8=";
+      sha256 = "sha256-fPp5WHRs98cXuEBJ41fzuovz5GsJDvyVaIgb56bjbVA=";
     }
     {
       name = "vscode-wasm";
@@ -26,7 +28,7 @@ vscode-with-extensions.override {
       name = "vscode-zig";
       publisher = "ziglang";
       version = "latest";
-      sha256 = "sha256-F6MDfVwmOpq4hgmIh0k9UW/ziAeT9aenri5E5z2mGw0=";
+      sha256 = "sha256-kczkVm847COmpNtUJI5lsZIuM7qAU6UgE8SCj8ZhIaA=";
     }
   ];
 }
