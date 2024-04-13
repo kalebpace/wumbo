@@ -1,0 +1,8 @@
+package component:doink;
+
+world example {
+  export add: func(left: u32, right: u32) -> u32;
+  export foo: interface {
+    concat: func(left: string, right: string) -> string;
+  }
+}
