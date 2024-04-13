@@ -39,12 +39,12 @@ let
         };
       cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
         inherit src;
-        outputHash = "sha256-tzgzticlY4OKVgsfdp5dxMHL5xz3Fapn0/n1zsyomWQ=";
+        outputHash = "sha256-JH0dDUaHrJtFiU7grzwqBIHt31Fvhzo5B0rcH4IeyQs=";
       });
     }))
   ];
 in
-stdenvNoCC.mkDerivation {
+stdenv.mkDerivation {
   name = "doink";
   src = ./.;
   phases = [ "unpackPhase" "buildPhase" "installPhase" "checkPhase" ];
@@ -75,7 +75,6 @@ stdenvNoCC.mkDerivation {
     wasm-tools validate ./final.wasm --features component-model
   '';
   
-
   installPhase = ''
     # We copy the package.json and link deps in the install directory to make it
     # easy to run a node script with packages

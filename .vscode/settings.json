@@ -8,6 +8,6 @@
         "--message-format=json"
     ],
     "rust-analyzer.workspace.symbol.search.scope": "workspace_and_dependencies",
-    "zig.path": "/nix/store/jdcras9fpriayy669zl3c4wbqr5gvspz-zig-0.11.0/bin/zig",
-    // "zig.zls.path": "/nix/store/im0cdijkhkrn3rdvab0964l6ar481fp4-zls-0.11.0/bin/zls"
+    "zig.path": "/nix/store/rhdb7hmbszrl8g9rzb0s9d5l41wkknsp-zig-0.11.0/bin/zig",
+    "zig.zls.path": "/nix/store/kj8rfy92mgi1hd6lm0639b07sdgjdjn6-zls-0.11.0/bin/zls"
 }
