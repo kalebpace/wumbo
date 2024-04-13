@@ -1,0 +1,6 @@
+[submodule "lib/nix"]
+	path = lib/nix
+	url = git@github.com:kalebpace/nix
+[submodule "lib/wali"]
+	path = lib/wali
+	url = git@github.com:kalebpace/WALI

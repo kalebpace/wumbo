@@ -30,6 +30,7 @@
         component-tinygo = import ./src/component-tinygo { inherit pkgs; };
         component-zig = import ./src/component-zig { inherit pkgs; };
         doink = import ./src/doink { inherit pkgs; };
+        wali = import ./lib/wali { inherit pkgs; };
       in
       rec {
         packages = {
@@ -38,6 +39,7 @@
           inherit component-tinygo;
           inherit component-zig;
           inherit doink;
+          inherit wali;
         };
 
         apps = {
@@ -78,10 +80,11 @@
               neovim
             ];
           });
-          component-rs = (import ./src/component-rs/shell.nix { inherit pkgs; });
-          component-tinygo = (import ./src/component-tinygo/shell.nix { inherit pkgs; });
-          component-zig = (import ./src/component-zig/shell.nix { inherit pkgs; });
-          doink = (import ./src/doink/shell.nix { inherit pkgs; });
+          component-rs = import ./src/component-rs/shell.nix { inherit pkgs; };
+          component-tinygo = import ./src/component-tinygo/shell.nix { inherit pkgs; };
+          component-zig = import ./src/component-zig/shell.nix { inherit pkgs; };
+          doink = import ./src/doink/shell.nix { inherit pkgs; };
+          wali = import ./lib/wali/shell.nix { inherit pkgs; };
         };
       }
     );
